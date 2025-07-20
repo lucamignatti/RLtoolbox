@@ -15,8 +15,8 @@
       "package": "rltoolbox",
       "type": "EpsilonGreedyAgent",
       "epsilon_start": 1.0,
-      "epsilon_end": 0.05,
-      "epsilon_decay": 0.995,
+      "epsilon_end": 0.01,
+      "epsilon_decay": 0.99,
       "num_actions": 2,
       "decay_type": "exponential"
     },
@@ -25,26 +25,32 @@
       "type": "ReplayBufferAgent",
       "buffer_size": 10000,
       "batch_size": 32,
-      "min_buffer_size": 1000
+      "min_buffer_size": 500
     },
     "console_logger": {
       "package": "rltoolbox",
       "type": "ConsoleLogger",
-      "log_frequency": 10,
+      "log_frequency": 25,
       "verbose": true,
       "log_steps": false
     },
     "file_logger": {
       "package": "rltoolbox",
       "type": "FileLogger",
-      "log_dir": "./logs/cartpole_epsilon_greedy",
+      "log_dir": "./logs/cartpole_comprehensive_eval",
       "save_frequency": 50,
       "save_config": true
+    },
+    "csv_logger": {
+      "package": "rltoolbox",
+      "type": "CSVLogger",
+      "log_dir": "./logs/cartpole_comprehensive_eval",
+      "filename_prefix": "comprehensive_training"
     },
     "metrics": {
       "package": "rltoolbox",
       "type": "MetricsLogger",
-      "window_size": 100,
+      "window_size": 50,
       "compute_frequency": 1
     }
   },
@@ -62,21 +68,22 @@
     "experience_storage": ["replay_buffer"],
     "learning_update": ["replay_buffer"],
     "step_end": [],
-    "episode_end": ["console_logger", "file_logger", "metrics"],
+    "episode_end": ["console_logger", "file_logger", "csv_logger", "metrics"],
     "training_end": ["console_logger", "file_logger"]
   },
 
   "training": {
-    "max_episodes": 1000,
+    "max_episodes": 500,
     "max_steps_per_episode": 500
   },
 
   "evaluation": {
     "enabled": true,
-    "num_episodes": 10,
+    "num_episodes": 20,
     "hooks": {
       "evaluation_start": ["console_logger", "file_logger", "metrics"],
-      "evaluation_episode_end": ["console_logger", "file_logger", "metrics"],
+      "evaluation_episode_start": [],
+      "evaluation_episode_end": ["console_logger", "file_logger", "csv_logger", "metrics"],
       "evaluation_end": ["console_logger", "file_logger", "metrics"]
     }
   }

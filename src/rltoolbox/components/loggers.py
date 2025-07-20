@@ -90,6 +90,27 @@ class ConsoleLogger(RLComponent):
                 print(f"Final Std Reward: {np.std(rewards):8.2f}")
                 print(f"Best Episode Reward: {np.max(rewards):8.2f}")
 
+    def evaluation_start(self, context: Dict[str, Any]) -> None:
+        """Log evaluation start."""
+        if self.verbose:
+            print("=== Evaluation Started ===")
+
+    def evaluation_episode_end(self, context: Dict[str, Any]) -> None:
+        """Log evaluation episode completion."""
+        episode = context["training"]["episode"]
+        episode_reward = context["training"]["episode_reward"]
+        episode_length = context["training"]["episode_length"]
+
+        if self.verbose:
+            print(f"Eval Episode {episode:2d} | "
+                  f"Reward: {episode_reward:8.2f} | "
+                  f"Length: {episode_length:3d}")
+
+    def evaluation_end(self, context: Dict[str, Any]) -> None:
+        """Log evaluation completion."""
+        if self.verbose:
+            print("=== Evaluation Completed ===")
+
     def validate_config(self) -> bool:
         """Validate logger configuration."""
         return self.log_frequency > 0
@@ -184,6 +205,60 @@ class FileLogger(RLComponent):
         summary_path = self.run_dir / "summary.json"
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2, default=str)
+
+    def evaluation_start(self, context: Dict[str, Any]) -> None:
+        """Save evaluation start information."""
+        eval_info = {
+            "evaluation_started": True,
+            "start_time": time.time(),
+            "training_episodes_completed": context["training"]["episode"]
+        }
+
+        eval_path = self.run_dir / "evaluation_info.json"
+        with open(eval_path, 'w') as f:
+            json.dump(eval_info, f, indent=2, default=str)
+
+    def evaluation_episode_end(self, context: Dict[str, Any]) -> None:
+        """Save evaluation episode data."""
+        eval_episode_info = {
+            "eval_episode": context["training"]["episode"],
+            "reward": context["training"]["episode_reward"],
+            "length": context["training"]["episode_length"],
+            "timestamp": time.time()
+        }
+
+        # Save to separate evaluation episodes file
+        eval_episodes_path = self.run_dir / "evaluation_episodes.json"
+        if eval_episodes_path.exists():
+            with open(eval_episodes_path, 'r') as f:
+                eval_data = json.load(f)
+        else:
+            eval_data = []
+
+        eval_data.append(eval_episode_info)
+
+        with open(eval_episodes_path, 'w') as f:
+            json.dump(eval_data, f, indent=2, default=str)
+
+    def evaluation_end(self, context: Dict[str, Any]) -> None:
+        """Save evaluation completion information."""
+        # Load existing evaluation info
+        eval_path = self.run_dir / "evaluation_info.json"
+        if eval_path.exists():
+            with open(eval_path, 'r') as f:
+                eval_info = json.load(f)
+        else:
+            eval_info = {}
+
+        # Add completion information
+        eval_info.update({
+            "evaluation_completed": True,
+            "end_time": time.time(),
+            "final_evaluation_results": context.get("final_evaluation", {})
+        })
+
+        with open(eval_path, 'w') as f:
+            json.dump(eval_info, f, indent=2, default=str)
 
     def _save_data(self) -> None:
         """Save episode and step data to files."""
@@ -383,6 +458,44 @@ class MetricsLogger(RLComponent):
     def set_state(self, state: Dict[str, Any]) -> None:
         """Set metrics state from checkpoint."""
         self.metrics_history = state["metrics_history"]
+
+    def evaluation_start(self, context: Dict[str, Any]) -> None:
+        """Initialize evaluation metrics tracking."""
+        # Store evaluation metrics separately
+        context["evaluation_metrics"] = {
+            "episode_rewards": [],
+            "episode_lengths": []
+        }
+
+    def evaluation_episode_end(self, context: Dict[str, Any]) -> None:
+        """Track evaluation episode metrics."""
+        if "evaluation_metrics" in context:
+            context["evaluation_metrics"]["episode_rewards"].append(
+                context["training"]["episode_reward"]
+            )
+            context["evaluation_metrics"]["episode_lengths"].append(
+                context["training"]["episode_length"]
+            )
+
+    def evaluation_end(self, context: Dict[str, Any]) -> None:
+        """Compute final evaluation metrics."""
+        if "evaluation_metrics" in context:
+            eval_rewards = context["evaluation_metrics"]["episode_rewards"]
+            eval_lengths = context["evaluation_metrics"]["episode_lengths"]
+
+            if eval_rewards:
+                eval_summary = {
+                    "mean_reward": np.mean(eval_rewards),
+                    "std_reward": np.std(eval_rewards),
+                    "min_reward": np.min(eval_rewards),
+                    "max_reward": np.max(eval_rewards),
+                    "mean_length": np.mean(eval_lengths),
+                    "std_length": np.std(eval_lengths),
+                    "num_episodes": len(eval_rewards)
+                }
+
+                # Add to context for other components
+                context["computed_evaluation_metrics"] = eval_summary
 
     def validate_config(self) -> bool:
         """Validate metrics logger configuration."""

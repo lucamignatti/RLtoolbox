@@ -26,19 +26,23 @@ class RLTrainer:
     using the hook-based system.
     """
 
-    def __init__(self, config_path: Optional[str] = None, config_dict: Optional[Dict[str, Any]] = None):
+    def __init__(self, config_path: Optional[str] = None, config_dict: Optional[Dict[str, Any]] = None, skip_automatic_evaluation: bool = False):
         """
         Initialize trainer with configuration.
 
         Args:
             config_path: Path to JSON configuration file
             config_dict: Configuration dictionary (alternative to config_path)
+            skip_automatic_evaluation: If True, skip automatic evaluation even if configured
         """
         if config_path is not None and config_dict is not None:
             raise ValueError("Provide either config_path or config_dict, not both")
 
         if config_path is None and config_dict is None:
             raise ValueError("Must provide either config_path or config_dict")
+
+        # Store settings
+        self.skip_automatic_evaluation = skip_automatic_evaluation
 
         # Load configuration
         if config_path is not None:
@@ -105,6 +109,19 @@ class RLTrainer:
         for hook_name, component_list in self.config["hooks"].items():
             if not isinstance(component_list, list):
                 raise ValueError(f"Hook '{hook_name}' must specify a list of components")
+
+        # Validate evaluation section if present
+        if "evaluation" in self.config:
+            evaluation_config = self.config["evaluation"]
+            if not isinstance(evaluation_config, dict):
+                raise ValueError("'evaluation' section must be a dictionary")
+
+            if "enabled" in evaluation_config and not isinstance(evaluation_config["enabled"], bool):
+                raise ValueError("'evaluation.enabled' must be a boolean")
+
+            if "num_episodes" in evaluation_config:
+                if not isinstance(evaluation_config["num_episodes"], int) or evaluation_config["num_episodes"] <= 0:
+                    raise ValueError("'evaluation.num_episodes' must be a positive integer")
 
     def _set_seed(self, seed: int) -> None:
         """Set random seed for reproducibility."""
@@ -230,6 +247,9 @@ class RLTrainer:
             # Training end
             self._execute_hook("training_end")
 
+            # Run automatic evaluation if configured
+            self._run_automatic_evaluation()
+
         except KeyboardInterrupt:
             print("Training interrupted by user")
             self._execute_hook("training_end")
@@ -286,6 +306,37 @@ class RLTrainer:
         self.hook_executor.execute_hook(
             hook_name, component_names, self.components, self.context
         )
+
+    def _run_automatic_evaluation(self) -> None:
+        """Run automatic evaluation if configured in JSON."""
+        # Skip if explicitly disabled
+        if self.skip_automatic_evaluation:
+            return
+
+        evaluation_config = self.config.get("evaluation", {})
+
+        if evaluation_config.get("enabled", False):
+            num_episodes = evaluation_config.get("num_episodes", 10)
+            print(f"\nRunning automatic evaluation for {num_episodes} episodes...")
+
+            # Temporarily override hooks for evaluation if specified
+            original_hooks = self.config["hooks"].copy()
+            eval_hooks = evaluation_config.get("hooks", {})
+
+            if eval_hooks:
+                self.config["hooks"].update(eval_hooks)
+
+            eval_results = self.evaluate(num_episodes=num_episodes)
+
+            # Restore original hooks
+            self.config["hooks"] = original_hooks
+
+            print("Automatic Evaluation Results:")
+            print(f"  Mean Reward: {eval_results['mean_reward']:.2f} ± {eval_results['std_reward']:.2f}")
+            print(f"  Mean Length: {eval_results['mean_length']:.2f} ± {eval_results['std_length']:.2f}")
+
+            # Store evaluation results in context for hooks
+            self.context["final_evaluation"] = eval_results
 
     def evaluate(self, num_episodes: int = 10) -> Dict[str, Any]:
         """

@@ -1,0 +1,122 @@
+[
+  {
+    "eval_episode": 0,
+    "reward": 18.0,
+    "length": 18,
+    "timestamp": 1753030868.382273
+  },
+  {
+    "eval_episode": 1,
+    "reward": 15.0,
+    "length": 15,
+    "timestamp": 1753030868.382855
+  },
+  {
+    "eval_episode": 2,
+    "reward": 33.0,
+    "length": 33,
+    "timestamp": 1753030868.383971
+  },
+  {
+    "eval_episode": 3,
+    "reward": 19.0,
+    "length": 19,
+    "timestamp": 1753030868.384649
+  },
+  {
+    "eval_episode": 4,
+    "reward": 28.0,
+    "length": 28,
+    "timestamp": 1753030868.385607
+  },
+  {
+    "eval_episode": 5,
+    "reward": 11.0,
+    "length": 11,
+    "timestamp": 1753030868.38606
+  },
+  {
+    "eval_episode": 6,
+    "reward": 20.0,
+    "length": 20,
+    "timestamp": 1753030868.386782
+  },
+  {
+    "eval_episode": 7,
+    "reward": 37.0,
+    "length": 37,
+    "timestamp": 1753030868.388007
+  },
+  {
+    "eval_episode": 8,
+    "reward": 20.0,
+    "length": 20,
+    "timestamp": 1753030868.3887029
+  },
+  {
+    "eval_episode": 9,
+    "reward": 15.0,
+    "length": 15,
+    "timestamp": 1753030868.389261
+  },
+  {
+    "eval_episode": 10,
+    "reward": 11.0,
+    "length": 11,
+    "timestamp": 1753030868.3897028
+  },
+  {
+    "eval_episode": 11,
+    "reward": 24.0,
+    "length": 24,
+    "timestamp": 1753030868.3905349
+  },
+  {
+    "eval_episode": 12,
+    "reward": 16.0,
+    "length": 16,
+    "timestamp": 1753030868.3911328
+  },
+  {
+    "eval_episode": 13,
+    "reward": 19.0,
+    "length": 19,
+    "timestamp": 1753030868.391857
+  },
+  {
+    "eval_episode": 14,
+    "reward": 11.0,
+    "length": 11,
+    "timestamp": 1753030868.392302
+  },
+  {
+    "eval_episode": 15,
+    "reward": 94.0,
+    "length": 94,
+    "timestamp": 1753030868.395235
+  },
+  {
+    "eval_episode": 16,
+    "reward": 14.0,
+    "length": 14,
+    "timestamp": 1753030868.395829
+  },
+  {
+    "eval_episode": 17,
+    "reward": 20.0,
+    "length": 20,
+    "timestamp": 1753030868.3965771
+  },
+  {
+    "eval_episode": 18,
+    "reward": 13.0,
+    "length": 13,
+    "timestamp": 1753030868.39712
+  },
+  {
+    "eval_episode": 19,
+    "reward": 32.0,
+    "length": 32,
+    "timestamp": 1753030868.398222
+  }
+]

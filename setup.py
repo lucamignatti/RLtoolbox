@@ -46,7 +46,6 @@ setup(
     install_requires=[
         "numpy>=1.20.0",
         "gymnasium>=0.26.0",
-        "pkg_resources",
     ],
     extras_require={
         "dev": [

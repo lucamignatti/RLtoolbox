@@ -1,9 +1,7 @@
 {
   "seed": 42,
   "development_mode": false,
-
   "packages": {},
-
   "components": {
     "env": {
       "package": "rltoolbox",
@@ -32,36 +30,57 @@
       "save_config": true
     }
   },
-
   "hooks": {
-    "training_start": ["console_logger", "file_logger"],
+    "training_start": [
+      "console_logger",
+      "file_logger"
+    ],
     "episode_start": [],
-    "episode_reset": ["env"],
+    "episode_reset": [
+      "env"
+    ],
     "step_start": [],
     "observation_received": [],
-    "action_selection": ["agent"],
+    "action_selection": [
+      "agent"
+    ],
     "action_chosen": [],
-    "environment_step": ["env"],
+    "environment_step": [
+      "env"
+    ],
     "transition_received": [],
     "experience_storage": [],
     "learning_update": [],
     "step_end": [],
-    "episode_end": ["console_logger", "file_logger"],
-    "training_end": ["console_logger", "file_logger"]
+    "episode_end": [
+      "console_logger",
+      "file_logger"
+    ],
+    "training_end": [
+      "console_logger",
+      "file_logger"
+    ]
   },
-
   "training": {
     "max_episodes": 100,
     "max_steps_per_episode": 500
   },
-
   "evaluation": {
     "enabled": true,
     "num_episodes": 10,
     "hooks": {
-      "evaluation_start": ["console_logger", "file_logger"],
-      "evaluation_episode_end": ["console_logger", "file_logger"],
-      "evaluation_end": ["console_logger", "file_logger"]
+      "evaluation_start": [
+        "console_logger",
+        "file_logger"
+      ],
+      "evaluation_episode_end": [
+        "console_logger",
+        "file_logger"
+      ],
+      "evaluation_end": [
+        "console_logger",
+        "file_logger"
+      ]
     }
   }
 }

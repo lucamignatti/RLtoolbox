@@ -13,6 +13,16 @@ RLtoolbox is a hook-based RL framework that breaks down the training loop into d
 
 ## Key Features
 
+### Standalone Training Command
+Train models directly from JSON configuration with zero wrapping code:
+```bash
+rltoolbox-train config.json --verbose
+```
+- Automatic evaluation at the end if configured
+- Complete isolation from wrapping code influence
+- Built-in checkpointing and logging
+- See `TRAINING_GUIDE.md` for full documentation
+
 ### Hook-Based Architecture
 The training loop is broken into discrete hook points where components can inject behavior:
 - `episode_start`, `episode_reset`, `episode_end`
@@ -45,6 +55,30 @@ Complete experiments are defined in JSON files:
 - **Multiple Execution**: Components can run multiple times per hook (e.g., `["model", "algo", "model"]`)
 - **Package Management**: Support for custom packages with version control
 - **Development Mode**: Skip version validation during research iteration
+
+## Quick Start
+
+### 1. Install RLtoolbox
+```bash
+pip install -e .
+```
+
+### 2. Run a Training Example
+```bash
+rltoolbox-train configs/cartpole_epsilon_greedy.json --verbose
+```
+
+This will:
+- Train an epsilon-greedy agent on CartPole
+- Automatically run evaluation at the end
+- Save comprehensive logs and metrics
+- Display real-time training progress
+
+### 3. Explore Configurations
+Check out the example configurations in `configs/`:
+- `cartpole_random.json` - Basic random agent
+- `cartpole_epsilon_greedy.json` - RL agent with replay buffer
+- `cartpole_comprehensive_eval.json` - Full evaluation setup
 
 ## Installation
 

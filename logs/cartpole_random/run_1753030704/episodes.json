@@ -1,0 +1,702 @@
+[
+  {
+    "episode": 0,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 11,
+    "timestamp": 1753030704.8955038
+  },
+  {
+    "episode": 1,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 25,
+    "timestamp": 1753030704.896298
+  },
+  {
+    "episode": 2,
+    "reward": 16.0,
+    "length": 16,
+    "total_steps": 41,
+    "timestamp": 1753030704.896736
+  },
+  {
+    "episode": 3,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 59,
+    "timestamp": 1753030704.897215
+  },
+  {
+    "episode": 4,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 79,
+    "timestamp": 1753030704.897745
+  },
+  {
+    "episode": 5,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 93,
+    "timestamp": 1753030704.898117
+  },
+  {
+    "episode": 6,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 114,
+    "timestamp": 1753030704.898803
+  },
+  {
+    "episode": 7,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 132,
+    "timestamp": 1753030704.89901
+  },
+  {
+    "episode": 8,
+    "reward": 13.0,
+    "length": 13,
+    "total_steps": 145,
+    "timestamp": 1753030704.899149
+  },
+  {
+    "episode": 9,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 165,
+    "timestamp": 1753030704.899356
+  },
+  {
+    "episode": 10,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 186,
+    "timestamp": 1753030704.8995898
+  },
+  {
+    "episode": 11,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 197,
+    "timestamp": 1753030704.899711
+  },
+  {
+    "episode": 12,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 208,
+    "timestamp": 1753030704.89983
+  },
+  {
+    "episode": 13,
+    "reward": 36.0,
+    "length": 36,
+    "total_steps": 244,
+    "timestamp": 1753030704.900193
+  },
+  {
+    "episode": 14,
+    "reward": 29.0,
+    "length": 29,
+    "total_steps": 273,
+    "timestamp": 1753030704.900485
+  },
+  {
+    "episode": 15,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 293,
+    "timestamp": 1753030704.900686
+  },
+  {
+    "episode": 16,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 308,
+    "timestamp": 1753030704.9008389
+  },
+  {
+    "episode": 17,
+    "reward": 25.0,
+    "length": 25,
+    "total_steps": 333,
+    "timestamp": 1753030704.9010959
+  },
+  {
+    "episode": 18,
+    "reward": 35.0,
+    "length": 35,
+    "total_steps": 368,
+    "timestamp": 1753030704.9014452
+  },
+  {
+    "episode": 19,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 386,
+    "timestamp": 1753030704.901628
+  },
+  {
+    "episode": 20,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 400,
+    "timestamp": 1753030704.901781
+  },
+  {
+    "episode": 21,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 414,
+    "timestamp": 1753030704.901925
+  },
+  {
+    "episode": 22,
+    "reward": 28.0,
+    "length": 28,
+    "total_steps": 442,
+    "timestamp": 1753030704.9025621
+  },
+  {
+    "episode": 23,
+    "reward": 33.0,
+    "length": 33,
+    "total_steps": 475,
+    "timestamp": 1753030704.902904
+  },
+  {
+    "episode": 24,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 487,
+    "timestamp": 1753030704.9030359
+  },
+  {
+    "episode": 25,
+    "reward": 27.0,
+    "length": 27,
+    "total_steps": 514,
+    "timestamp": 1753030704.90331
+  },
+  {
+    "episode": 26,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 526,
+    "timestamp": 1753030704.903434
+  },
+  {
+    "episode": 27,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 547,
+    "timestamp": 1753030704.904543
+  },
+  {
+    "episode": 28,
+    "reward": 19.0,
+    "length": 19,
+    "total_steps": 566,
+    "timestamp": 1753030704.905074
+  },
+  {
+    "episode": 29,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 578,
+    "timestamp": 1753030704.9052129
+  },
+  {
+    "episode": 30,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 596,
+    "timestamp": 1753030704.9054239
+  },
+  {
+    "episode": 31,
+    "reward": 13.0,
+    "length": 13,
+    "total_steps": 609,
+    "timestamp": 1753030704.905567
+  },
+  {
+    "episode": 32,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 620,
+    "timestamp": 1753030704.905684
+  },
+  {
+    "episode": 33,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 635,
+    "timestamp": 1753030704.905843
+  },
+  {
+    "episode": 34,
+    "reward": 26.0,
+    "length": 26,
+    "total_steps": 661,
+    "timestamp": 1753030704.90611
+  },
+  {
+    "episode": 35,
+    "reward": 32.0,
+    "length": 32,
+    "total_steps": 693,
+    "timestamp": 1753030704.906455
+  },
+  {
+    "episode": 36,
+    "reward": 33.0,
+    "length": 33,
+    "total_steps": 726,
+    "timestamp": 1753030704.906795
+  },
+  {
+    "episode": 37,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 741,
+    "timestamp": 1753030704.906952
+  },
+  {
+    "episode": 38,
+    "reward": 17.0,
+    "length": 17,
+    "total_steps": 758,
+    "timestamp": 1753030704.907135
+  },
+  {
+    "episode": 39,
+    "reward": 30.0,
+    "length": 30,
+    "total_steps": 788,
+    "timestamp": 1753030704.9074419
+  },
+  {
+    "episode": 40,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 809,
+    "timestamp": 1753030704.907669
+  },
+  {
+    "episode": 41,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 824,
+    "timestamp": 1753030704.9078279
+  },
+  {
+    "episode": 42,
+    "reward": 48.0,
+    "length": 48,
+    "total_steps": 872,
+    "timestamp": 1753030704.908316
+  },
+  {
+    "episode": 43,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 892,
+    "timestamp": 1753030704.908523
+  },
+  {
+    "episode": 44,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 907,
+    "timestamp": 1753030704.908685
+  },
+  {
+    "episode": 45,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 925,
+    "timestamp": 1753030704.908988
+  },
+  {
+    "episode": 46,
+    "reward": 26.0,
+    "length": 26,
+    "total_steps": 951,
+    "timestamp": 1753030704.909436
+  },
+  {
+    "episode": 47,
+    "reward": 17.0,
+    "length": 17,
+    "total_steps": 968,
+    "timestamp": 1753030704.90962
+  },
+  {
+    "episode": 48,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 988,
+    "timestamp": 1753030704.909834
+  },
+  {
+    "episode": 49,
+    "reward": 31.0,
+    "length": 31,
+    "total_steps": 1019,
+    "timestamp": 1753030704.910151
+  },
+  {
+    "episode": 50,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 1031,
+    "timestamp": 1753030704.9102879
+  },
+  {
+    "episode": 51,
+    "reward": 38.0,
+    "length": 38,
+    "total_steps": 1069,
+    "timestamp": 1753030704.9111118
+  },
+  {
+    "episode": 52,
+    "reward": 13.0,
+    "length": 13,
+    "total_steps": 1082,
+    "timestamp": 1753030704.9112608
+  },
+  {
+    "episode": 53,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 1097,
+    "timestamp": 1753030704.911417
+  },
+  {
+    "episode": 54,
+    "reward": 35.0,
+    "length": 35,
+    "total_steps": 1132,
+    "timestamp": 1753030704.911767
+  },
+  {
+    "episode": 55,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 1153,
+    "timestamp": 1753030704.912211
+  },
+  {
+    "episode": 56,
+    "reward": 18.0,
+    "length": 18,
+    "total_steps": 1171,
+    "timestamp": 1753030704.912705
+  },
+  {
+    "episode": 57,
+    "reward": 58.0,
+    "length": 58,
+    "total_steps": 1229,
+    "timestamp": 1753030704.914248
+  },
+  {
+    "episode": 58,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 1241,
+    "timestamp": 1753030704.914575
+  },
+  {
+    "episode": 59,
+    "reward": 34.0,
+    "length": 34,
+    "total_steps": 1275,
+    "timestamp": 1753030704.9154181
+  },
+  {
+    "episode": 60,
+    "reward": 17.0,
+    "length": 17,
+    "total_steps": 1292,
+    "timestamp": 1753030704.915613
+  },
+  {
+    "episode": 61,
+    "reward": 64.0,
+    "length": 64,
+    "total_steps": 1356,
+    "timestamp": 1753030704.916265
+  },
+  {
+    "episode": 62,
+    "reward": 46.0,
+    "length": 46,
+    "total_steps": 1402,
+    "timestamp": 1753030704.916734
+  },
+  {
+    "episode": 63,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 1416,
+    "timestamp": 1753030704.9168892
+  },
+  {
+    "episode": 64,
+    "reward": 14.0,
+    "length": 14,
+    "total_steps": 1430,
+    "timestamp": 1753030704.917035
+  },
+  {
+    "episode": 65,
+    "reward": 46.0,
+    "length": 46,
+    "total_steps": 1476,
+    "timestamp": 1753030704.917505
+  },
+  {
+    "episode": 66,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 1488,
+    "timestamp": 1753030704.917631
+  },
+  {
+    "episode": 67,
+    "reward": 29.0,
+    "length": 29,
+    "total_steps": 1517,
+    "timestamp": 1753030704.917928
+  },
+  {
+    "episode": 68,
+    "reward": 56.0,
+    "length": 56,
+    "total_steps": 1573,
+    "timestamp": 1753030704.918496
+  },
+  {
+    "episode": 69,
+    "reward": 12.0,
+    "length": 12,
+    "total_steps": 1585,
+    "timestamp": 1753030704.918626
+  },
+  {
+    "episode": 70,
+    "reward": 24.0,
+    "length": 24,
+    "total_steps": 1609,
+    "timestamp": 1753030704.918887
+  },
+  {
+    "episode": 71,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 1629,
+    "timestamp": 1753030704.9190989
+  },
+  {
+    "episode": 72,
+    "reward": 29.0,
+    "length": 29,
+    "total_steps": 1658,
+    "timestamp": 1753030704.919399
+  },
+  {
+    "episode": 73,
+    "reward": 28.0,
+    "length": 28,
+    "total_steps": 1686,
+    "timestamp": 1753030704.9196858
+  },
+  {
+    "episode": 74,
+    "reward": 22.0,
+    "length": 22,
+    "total_steps": 1708,
+    "timestamp": 1753030704.919911
+  },
+  {
+    "episode": 75,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 1719,
+    "timestamp": 1753030704.9200268
+  },
+  {
+    "episode": 76,
+    "reward": 21.0,
+    "length": 21,
+    "total_steps": 1740,
+    "timestamp": 1753030704.920243
+  },
+  {
+    "episode": 77,
+    "reward": 16.0,
+    "length": 16,
+    "total_steps": 1756,
+    "timestamp": 1753030704.9204109
+  },
+  {
+    "episode": 78,
+    "reward": 15.0,
+    "length": 15,
+    "total_steps": 1771,
+    "timestamp": 1753030704.920566
+  },
+  {
+    "episode": 79,
+    "reward": 17.0,
+    "length": 17,
+    "total_steps": 1788,
+    "timestamp": 1753030704.9207418
+  },
+  {
+    "episode": 80,
+    "reward": 10.0,
+    "length": 10,
+    "total_steps": 1798,
+    "timestamp": 1753030704.920855
+  },
+  {
+    "episode": 81,
+    "reward": 16.0,
+    "length": 16,
+    "total_steps": 1814,
+    "timestamp": 1753030704.921024
+  },
+  {
+    "episode": 82,
+    "reward": 28.0,
+    "length": 28,
+    "total_steps": 1842,
+    "timestamp": 1753030704.921311
+  },
+  {
+    "episode": 83,
+    "reward": 37.0,
+    "length": 37,
+    "total_steps": 1879,
+    "timestamp": 1753030704.921719
+  },
+  {
+    "episode": 84,
+    "reward": 49.0,
+    "length": 49,
+    "total_steps": 1928,
+    "timestamp": 1753030704.922229
+  },
+  {
+    "episode": 85,
+    "reward": 30.0,
+    "length": 30,
+    "total_steps": 1958,
+    "timestamp": 1753030704.92254
+  },
+  {
+    "episode": 86,
+    "reward": 10.0,
+    "length": 10,
+    "total_steps": 1968,
+    "timestamp": 1753030704.922647
+  },
+  {
+    "episode": 87,
+    "reward": 22.0,
+    "length": 22,
+    "total_steps": 1990,
+    "timestamp": 1753030704.922875
+  },
+  {
+    "episode": 88,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 2001,
+    "timestamp": 1753030704.922991
+  },
+  {
+    "episode": 89,
+    "reward": 39.0,
+    "length": 39,
+    "total_steps": 2040,
+    "timestamp": 1753030704.924574
+  },
+  {
+    "episode": 90,
+    "reward": 11.0,
+    "length": 11,
+    "total_steps": 2051,
+    "timestamp": 1753030704.9249501
+  },
+  {
+    "episode": 91,
+    "reward": 25.0,
+    "length": 25,
+    "total_steps": 2076,
+    "timestamp": 1753030704.925616
+  },
+  {
+    "episode": 92,
+    "reward": 17.0,
+    "length": 17,
+    "total_steps": 2093,
+    "timestamp": 1753030704.926253
+  },
+  {
+    "episode": 93,
+    "reward": 22.0,
+    "length": 22,
+    "total_steps": 2115,
+    "timestamp": 1753030704.926854
+  },
+  {
+    "episode": 94,
+    "reward": 10.0,
+    "length": 10,
+    "total_steps": 2125,
+    "timestamp": 1753030704.926975
+  },
+  {
+    "episode": 95,
+    "reward": 34.0,
+    "length": 34,
+    "total_steps": 2159,
+    "timestamp": 1753030704.927339
+  },
+  {
+    "episode": 96,
+    "reward": 27.0,
+    "length": 27,
+    "total_steps": 2186,
+    "timestamp": 1753030704.927618
+  },
+  {
+    "episode": 97,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 2206,
+    "timestamp": 1753030704.927827
+  },
+  {
+    "episode": 98,
+    "reward": 32.0,
+    "length": 32,
+    "total_steps": 2238,
+    "timestamp": 1753030704.9281468
+  },
+  {
+    "episode": 99,
+    "reward": 20.0,
+    "length": 20,
+    "total_steps": 2258,
+    "timestamp": 1753030704.92835
+  }
+]
