@@ -24,11 +24,29 @@ rltoolbox-train config.json --verbose
 - See `TRAINING_GUIDE.md` for full documentation
 
 ### Hook-Based Architecture
-The training loop is broken into discrete hook points where components can inject behavior:
-- `episode_start`, `episode_reset`, `episode_end`
-- `action_selection`, `environment_step`, `learning_update`
-- `training_start`, `training_end`, `evaluation_start`
-- And many more...
+The training loop is broken into 25+ discrete hook points where components can inject behavior, giving you complete control over every aspect of the training process:
+
+**Core Training Hooks:**
+- `training_start`, `training_end` - Training lifecycle
+- `episode_start`, `episode_reset`, `episode_end` - Episode lifecycle  
+- `step_start`, `step_end` - Individual step lifecycle
+- `action_selection`, `action_chosen` - Action selection process
+- `environment_step` - Environment interaction
+- `learning_update` - Model updates
+
+**Data Flow Hooks:**
+- `observation_received`, `transition_received` - Data reception
+- `experience_storage` - Experience replay management
+- `metrics_computation`, `logging_update` - Metrics and logging
+- `checkpoint_save`, `visualization_update` - Persistence and visualization
+
+**Evaluation Hooks:**
+- `evaluation_start`, `evaluation_end` - Evaluation lifecycle
+- `evaluation_episode_start`, `evaluation_episode_end` - Evaluation episodes
+
+**Batch Processing Hooks:**
+- `epoch_start`, `epoch_end` - Training epochs
+- `batch_start`, `batch_end` - Batch processing
 
 ### JSON Configuration
 Complete experiments are defined in JSON files:
@@ -136,7 +154,7 @@ python examples/train_cartpole.py configs/cartpole_random.json --checkpoint fina
 {
   "seed": 42,                    // Required for reproducibility
   "development_mode": false,     // Skip version validation
-  
+
   "packages": {                  // Package specifications
     "package_name": {
       "version": "1.0.0",        // Exact version required
@@ -148,7 +166,7 @@ python examples/train_cartpole.py configs/cartpole_random.json --checkpoint fina
       "components": ["MyComponent"]
     }
   },
-  
+
   "components": {                // Component instances
     "my_agent": {
       "package": "package_name",
@@ -156,12 +174,12 @@ python examples/train_cartpole.py configs/cartpole_random.json --checkpoint fina
       "param1": "value1"
     }
   },
-  
+
   "hooks": {                     // Hook execution order
     "action_selection": ["my_agent"],
     "learning_update": ["replay", "my_agent", "replay"]
   },
-  
+
   "training": {                  // Training parameters
     "max_episodes": 1000,
     "max_steps_per_episode": 500
@@ -171,13 +189,42 @@ python examples/train_cartpole.py configs/cartpole_random.json --checkpoint fina
 
 ### Available Hooks
 
+All 25 available hooks with their purposes and expected context modifications:
+
 | Hook | Purpose | Expected Context Additions |
 |------|---------|---------------------------|
+| **Core Training Lifecycle** |
+| `training_start` | Initialize training | - |
+| `training_end` | Finalize training | - |
+| `episode_start` | Start new episode | - |
 | `episode_reset` | Reset environment | `state` |
+| `episode_end` | End episode processing | - |
+| `step_start` | Start individual step | - |
+| `step_end` | End individual step | - |
+| **Action & Environment** |
+| `observation_received` | Process observation | - |
 | `action_selection` | Choose action | `action` |
+| `action_chosen` | Post-action processing | - |
 | `environment_step` | Step environment | `next_state`, `reward`, `done` |
-| `learning_update` | Update model | (varies) |
-| `episode_end` | End-of-episode processing | (varies) |
+| `transition_received` | Process transition | - |
+| **Learning & Data** |
+| `experience_storage` | Store experience | - |
+| `learning_update` | Update model | - |
+| `metrics_computation` | Compute metrics | - |
+| **Persistence & Logging** |
+| `checkpoint_save` | Save checkpoints | - |
+| `logging_update` | Update logs | - |
+| `visualization_update` | Update visualizations | - |
+| **Evaluation** |
+| `evaluation_start` | Start evaluation | - |
+| `evaluation_end` | End evaluation | - |
+| `evaluation_episode_start` | Start eval episode | - |
+| `evaluation_episode_end` | End eval episode | - |
+| **Batch Processing** |
+| `epoch_start` | Start training epoch | - |
+| `epoch_end` | End training epoch | - |
+| `batch_start` | Start batch processing | - |
+| `batch_end` | End batch processing | - |
 
 ## Creating Custom Components
 
@@ -191,13 +238,13 @@ class MyAgent(RLComponent):
     def __init__(self, config):
         super().__init__(config)
         self.learning_rate = config.get("learning_rate", 0.001)
-    
+
     def action_selection(self, context):
         # Select action based on current state
         state = context["state"]
         action = self.policy(state)
         context["action"] = action
-    
+
     def learning_update(self, context):
         # Update model with experience
         if "batch" in context:
@@ -212,7 +259,7 @@ class ComplexAgent(RLComponent):
     def episode_start(self, context):
         # Initialize episode-specific state
         self.episode_actions = []
-    
+
     def action_selection(self, context):
         # Different behavior on multiple calls within same hook
         run_count = context["_run_count"]
@@ -222,10 +269,10 @@ class ComplexAgent(RLComponent):
         else:
             # Second call: exploitation
             action = self.exploit(context["state"])
-        
+
         context["action"] = action
         self.episode_actions.append(action)
-    
+
     def episode_end(self, context):
         # Process full episode
         self.update_policy(self.episode_actions, context["training"]["episode_reward"])
@@ -340,7 +387,7 @@ If you use RLtoolbox in your research, please cite:
 @software{rltoolbox2024,
   title={RLtoolbox: A Highly Configurable Reinforcement Learning Framework},
   author={RLtoolbox Contributors},
-  year={2024},
-  url={https://github.com/yourusername/RLtoolbox}
+  year={2025},
+  url={https://github.com/lucamignatti/RLtoolbox}
 }
 ```
