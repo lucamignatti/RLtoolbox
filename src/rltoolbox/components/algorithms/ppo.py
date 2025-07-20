@@ -3,7 +3,7 @@ import torch.nn as nn
 from torch.distributions import Categorical
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class PPO(RLComponent):

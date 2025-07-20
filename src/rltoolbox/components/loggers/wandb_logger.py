@@ -1,7 +1,7 @@
 import wandb
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class WandbLogger(RLComponent):

@@ -1,7 +1,7 @@
 import numpy as np
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class EnvironmentWrapper(RLComponent):

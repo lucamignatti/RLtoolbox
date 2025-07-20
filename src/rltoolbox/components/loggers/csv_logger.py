@@ -1,8 +1,9 @@
 import csv
 from pathlib import Path
 from typing import Dict, Any
+import time
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class CSVLogger(RLComponent):

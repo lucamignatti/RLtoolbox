@@ -81,6 +81,14 @@ def cartpole_config():
             },
             "agent": {
                 "package": "rltoolbox",
+                "type": "MLPAgent",
+                "state_dim": 4,
+                "action_dim": 2,
+                "hidden_layers": [16, 16],
+                "learning_rate": 0.01,
+            },
+            "exploration_agent": {
+                "package": "rltoolbox",
                 "type": "EpsilonGreedyAgent",
                 "epsilon_start": 1.0,
                 "epsilon_end": 0.1,
@@ -97,7 +105,7 @@ def cartpole_config():
         },
         "hooks": {
             "episode_reset": ["env"],
-            "action_selection": ["agent"],
+            "action_selection": ["agent", "exploration_agent"],
             "environment_step": ["env"],
             "episode_end": ["logger"]
         },

@@ -2,7 +2,7 @@ import gymnasium as gym
 import numpy as np
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class SimpleEnvironment(RLComponent):

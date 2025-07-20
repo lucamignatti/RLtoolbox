@@ -3,7 +3,7 @@ import time
 from pathlib import Path
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class FileLogger(RLComponent):

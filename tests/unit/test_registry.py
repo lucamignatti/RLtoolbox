@@ -340,9 +340,16 @@ class TestComponentRegistry:
         components = registry.list_components()
         expected_components = [
             "rltoolbox.SimpleEnvironment",
-            "rltoolbox.RandomEnvironment",
-            "rltoolbox.RandomAgent",
-            "rltoolbox.ConsoleLogger"
+            "rltoolbox.MLPAgent",
+            "rltoolbox.EpsilonGreedyAgent",
+            "rltoolbox.PolicyAgent",
+            "rltoolbox.ReplayBufferAgent",
+            "rltoolbox.ConsoleLogger",
+            "rltoolbox.FileLogger",
+            "rltoolbox.CSVLogger",
+            "rltoolbox.MetricsLogger",
+            "rltoolbox.WandbLogger",
+            "rltoolbox.PPO",
         ]
 
         for component in expected_components:

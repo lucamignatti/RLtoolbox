@@ -2,7 +2,7 @@ import numpy as np
 import random
 from typing import Dict, Any
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class PolicyAgent(RLComponent):

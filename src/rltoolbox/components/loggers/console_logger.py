@@ -1,7 +1,8 @@
 import time
 from typing import Dict, Any
+import numpy as np
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class ConsoleLogger(RLComponent):

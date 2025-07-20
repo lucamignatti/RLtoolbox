@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from ....core.base import RLComponent
+from ...core.base import RLComponent
 
 
 class MLPAgent(RLComponent):
