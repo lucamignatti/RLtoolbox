@@ -75,6 +75,9 @@ class RLTrainer:
         # Initialize context
         self.context = self._initialize_context()
 
+        # Add components to context so they can access each other
+        self.context["components"] = self.components
+
     def _validate_config(self) -> None:
         """Validate the configuration structure."""
         required_sections = ["components", "hooks"]
@@ -439,6 +442,9 @@ class RLTrainer:
 
         # Restore context
         self.context.update(checkpoint["context"])
+
+        # Ensure components are still available in context after loading
+        self.context["components"] = self.components
 
         # Restore component states
         for name, component in self.components.items():

@@ -28,6 +28,9 @@ class ComponentRegistry:
         self._packages: Dict[str, Dict[str, Any]] = {}
         self._development_mode: bool = False
 
+        # Auto-register rltoolbox package
+        self._register_rltoolbox_package()
+
     def set_development_mode(self, enabled: bool) -> None:
         """Enable or disable development mode (skips version validation)."""
         self._development_mode = enabled
@@ -43,6 +46,13 @@ class ComponentRegistry:
         """
         for package_name, package_config in packages_config.items():
             self._register_package(package_name, package_config)
+
+    def _register_rltoolbox_package(self) -> None:
+        """Register the rltoolbox package itself."""
+        self._packages["rltoolbox"] = {
+            "version": "internal",
+            "components": []
+        }
 
     def _register_package(self, package_name: str, package_config: Dict[str, Any]) -> None:
         """
@@ -210,6 +220,10 @@ class ComponentRegistry:
         if package_name not in self._packages:
             raise ValueError(f"Package {package_name} not registered")
 
+        # For rltoolbox package, try to import directly from the components module
+        if package_name == "rltoolbox":
+            return self._get_rltoolbox_component(component_type)
+
         full_name = f"{package_name}.{component_type}"
         if full_name not in self._components:
             # For rltoolbox components, they should already be registered
@@ -222,6 +236,38 @@ class ComponentRegistry:
             )
 
         return self._components[full_name]
+
+    def _get_rltoolbox_component(self, component_type: str) -> Type[RLComponent]:
+        """
+        Get a component from the rltoolbox package.
+
+        Args:
+            component_type: Type of the component
+
+        Returns:
+            Component class
+        """
+        # Try to import from rltoolbox.components
+        try:
+            module = importlib.import_module("rltoolbox.components")
+            if hasattr(module, component_type):
+                component_class = getattr(module, component_type)
+                if issubclass(component_class, RLComponent):
+                    return component_class
+        except ImportError:
+            pass
+
+        # If not found in components, check if it's already registered
+        full_name = f"rltoolbox.{component_type}"
+        if full_name in self._components:
+            return self._components[full_name]
+
+        # If still not found, raise error with helpful message
+        available = [name.split(".", 1)[1] for name in self._components.keys() if name.startswith("rltoolbox.")]
+        if available:
+            raise ValueError(f"Component 'rltoolbox.{component_type}' not found. Available rltoolbox components: {available}")
+        else:
+            raise ValueError(f"Component 'rltoolbox.{component_type}' not found. No rltoolbox components are currently implemented.")
 
     def create_component(self, package_name: str, component_type: str, config: Dict[str, Any]) -> RLComponent:
         """
@@ -255,7 +301,7 @@ class ComponentRegistry:
         """
         return list(self._components.keys())
 
-    
+
 
 
 # Global registry instance

@@ -48,3 +48,27 @@ def test_hook_validation_warning():
     # The HookExecutor should warn that the expected context key 'action' was not added.
     with pytest.warns(UserWarning, match="did not add expected context keys:.*action"):
         executor.execute_hook("action_selection", ["mock"], components, context)
+
+
+def test_unknown_hook_warning():
+    executor = HookExecutor()
+    component = MockComponent({})
+    components = {"mock": component}
+    context = {}
+
+    # Test that unknown hooks (like the removed learning_update) produce warnings
+    with pytest.warns(UserWarning, match="Unknown hook: learning_update"):
+        executor.execute_hook("learning_update", ["mock"], components, context)
+
+
+def test_removed_learning_update_hook():
+    """Test that learning_update hook is no longer in the expected hooks."""
+    executor = HookExecutor()
+
+    # Verify learning_update is not in expected hooks
+    assert "learning_update" not in executor.HOOK_EXPECTATIONS
+
+    # Verify other hooks are still present
+    assert "experience_storage" in executor.HOOK_EXPECTATIONS
+    assert "step_end" in executor.HOOK_EXPECTATIONS
+    assert "episode_end" in executor.HOOK_EXPECTATIONS

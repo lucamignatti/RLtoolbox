@@ -200,6 +200,7 @@ class RLComponent(ABC):
         pass
 
 
+
     def step_end(self, context: Dict[str, Any]) -> None:
         """
         Called at the end of each step within an episode.
@@ -349,6 +350,29 @@ class RLComponent(ABC):
     # -------------------
     # Component Utilities
     # -------------------
+
+    def get_component(self, context: Dict[str, Any], component_name: str) -> 'RLComponent':
+        """
+        Get another component by name from the context.
+
+        Args:
+            context: The context dictionary containing components
+            component_name: Name of the component to retrieve
+
+        Returns:
+            The requested component instance
+
+        Raises:
+            KeyError: If the component is not found
+        """
+        if "components" not in context:
+            raise KeyError("Components not available in context")
+
+        if component_name not in context["components"]:
+            available = list(context["components"].keys())
+            raise KeyError(f"Component '{component_name}' not found. Available: {available}")
+
+        return context["components"][component_name]
 
     def validate_config(self) -> bool:
         """
