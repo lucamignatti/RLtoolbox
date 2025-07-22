@@ -63,7 +63,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "rltoolbox-train=rltoolbox.cli:main",
+            "rltoolbox=rltoolbox.cli:main",
         ],
     },
     include_package_data=True,
