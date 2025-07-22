@@ -176,7 +176,6 @@ This example demonstrates a PPO agent training on CartPole-v1 using components f
         "environment_step": ["env"],
         "action_selection": ["actor_critic"],
         "transition_received": ["experience_buffer"],
-        "learning_update": ["ppo_algorithm"],
         "episode_end": ["console_logger"]
     },
     "training": {
@@ -289,18 +288,22 @@ Below is a detailed list of the hooks defined in `RLComponent`, their purpose, a
     *   **Context Changes:** No specific changes are expected.
 
 *   **`experience_storage(self, context: Dict[str, Any]) -> None`**
-    *   **Purpose:** Called to store experience, typically in a replay buffer.
+    *   **Purpose:** Called to store experience, typically in a replay buffer. Components can also implement learning updates here if they need to learn immediately after storing experience.
     *   **Context Changes:** No specific changes are expected.
 
-*   **`learning_update(self, context: Dict[str, Any]) -> None`**
-    *   **Purpose:** Called to perform a learning update. Typically implemented by an algorithm component.
-    *   **Context Changes:** Can add learning-related metrics (e.g., `loss`, `policy_loss`, `value_loss`, `entropy_loss`).
-
 *   **`step_end(self, context: Dict[str, Any]) -> None`**
-    *   **Purpose:** Called at the end of each step within an episode.
+    *   **Purpose:** Called at the end of each step within an episode. This hook can be used to implement learning updates that need to happen on a custom schedule (e.g., every N steps, when certain conditions are met).
     *   **Context Changes:** No specific changes are expected.
 
 ---
+
+**Note:** The `learning_update` hook has been removed. To implement learning updates, use the most appropriate hook for your algorithm:
+- `episode_end` for episode-based updates (e.g., policy gradient)
+- `experience_storage` for buffer-driven or streaming updates
+- `step_end` for custom schedules (e.g., every N steps)
+- `batch_end` or `epoch_end` for offline/batch RL
+
+See `MIGRATION_LEARNING_UPDATE.md` for migration examples.
 
 #### Evaluation Hooks
 

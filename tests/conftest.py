@@ -194,9 +194,6 @@ class MockComponent(RLComponent):
         context["reward"] = 1.0
         context["done"] = False
 
-    def learning_update(self, context: Dict[str, Any]) -> None:
-        self.call_log.append(("learning_update", context.get("_run_count", 1)))
-
     def episode_end(self, context: Dict[str, Any]) -> None:
         self.call_log.append(("episode_end", context.get("_run_count", 1)))
 
@@ -226,8 +223,7 @@ def mock_config_with_multiple_calls():
             }
         },
         "hooks": {
-            "action_selection": ["mock1", "mock2", "mock1"],
-            "learning_update": ["mock2", "mock1", "mock2", "mock1"]
+            "action_selection": ["mock1", "mock2", "mock1"]
         },
         "training": {
             "max_episodes": 1,

@@ -131,7 +131,7 @@ class RLTrainer:
 
     def _setup_packages(self) -> None:
         """Set up package registry."""
-        
+
 
         # Register packages from configuration
         if "packages" in self.config:
@@ -283,9 +283,6 @@ class RLTrainer:
 
         # Store experience
         self._execute_hook("experience_storage")
-
-        # Learning update
-        self._execute_hook("learning_update")
 
         # Step end
         self._execute_hook("step_end")

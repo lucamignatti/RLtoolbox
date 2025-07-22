@@ -98,6 +98,8 @@ class RLComponent(ABC):
 
         This hook is useful for any cleanup or logging that needs to be done
         on a per-episode basis, such as logging the total episode reward.
+        It's also a common place to implement learning updates for algorithms
+        that learn at episode boundaries (e.g., policy gradient methods).
 
         Context Changes:
             - No specific changes are expected.
@@ -189,30 +191,21 @@ class RLComponent(ABC):
         Called to store experience, typically in a replay buffer.
 
         This hook is useful for implementing experience replay buffers or other
-        memory mechanisms.
+        memory mechanisms. Components can also implement learning updates here
+        if they need to learn immediately after storing experience.
 
         Context Changes:
             - No specific changes are expected.
         """
         pass
 
-    def learning_update(self, context: Dict[str, Any]) -> None:
-        """
-        Called to perform a learning update.
-
-        This hook is typically implemented by an algorithm component. It is
-        responsible for updating the agent's policy based on the collected
-        experience.
-
-        Context Changes:
-            - Can be used to add any learning-related metrics to the context,
-              such as `loss`.
-        """
-        pass
 
     def step_end(self, context: Dict[str, Any]) -> None:
         """
         Called at the end of each step within an episode.
+
+        This hook can be used to implement learning updates that need to happen
+        on a custom schedule (e.g., every N steps, when certain conditions are met).
 
         Context Changes:
             - No specific changes are expected.

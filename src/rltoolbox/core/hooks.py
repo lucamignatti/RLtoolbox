@@ -25,7 +25,6 @@ class HookExecutor:
         "observation_received": [],
         "transition_received": [],
         "experience_storage": [],
-        "learning_update": [],
         "metrics_computation": [],
         "checkpoint_save": [],
         "logging_update": [],
