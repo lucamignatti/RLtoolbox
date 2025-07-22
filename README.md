@@ -14,12 +14,6 @@ To install the core RLtoolbox, run:
 pip install .
 ```
 
-To install the example wrappers (which include common environments, agents, and algorithms), run:
-
-```bash
-pip install -e tools/rltoolbox_wrappers
-```
-
 ## Usage
 
 The main entry point for RLtoolbox is the `rltoolbox` command-line interface (CLI). The CLI has the following commands:
