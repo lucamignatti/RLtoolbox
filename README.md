@@ -377,25 +377,3 @@ Below is a detailed list of the hooks defined in `RLComponent`, their purpose, a
     *   **Purpose:** Called when a checkpoint is saved. Should return a dictionary containing the component's internal state for persistence.
 *   **`set_state(self, state: Dict[str, Any]) -> None`**
     *   **Purpose:** Called when a checkpoint is loaded. Should restore the component's internal state from the given dictionary.
-
-## Components Overview
-
-RLtoolbox components are Python classes that inherit from `rltoolbox.core.base.RLComponent`. They encapsulate specific functionalities (e.g., environments, agents, algorithms, loggers) and interact with the training loop via the hook system.
-
-The `rltoolbox_wrappers` package provides a set of example components that you can use as a starting point or directly in your configurations:
-
-*   **Environments:**
-    *   `GymnasiumEnvWrapper`: Wraps standard Gymnasium environments.
-    *   `SimpleEnvironment`: A simplified Gymnasium wrapper for testing.
-    *   `RandomEnvironment`: A dummy environment for testing purposes.
-*   **Agents:**
-    *   `RandomAgent`: Selects actions randomly.
-    *   `MLPAgent`: A simple Multi-Layer Perceptron agent for discrete action spaces.
-    *   `EpsilonGreedyAgent`: Implements an epsilon-greedy exploration strategy, wrapping another agent.
-    *   `MLPActorCritic`: Provides an actor (policy) and critic (value) network, typically used by algorithm components.
-*   **Algorithms:**
-    *   `PPOAlgorithm`: Implements the Proximal Policy Optimization (PPO) algorithm.
-*   **Buffers:**
-    *   `ExperienceBuffer`: A simple replay buffer for storing and sampling experiences.
-*   **Loggers:**
-    *   `ConsoleLogger`: Prints training progress to the console.
