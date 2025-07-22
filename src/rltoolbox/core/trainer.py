@@ -131,8 +131,7 @@ class RLTrainer:
 
     def _setup_packages(self) -> None:
         """Set up package registry."""
-        # Register built-in components
-        self.registry.register_builtin_components()
+        
 
         # Register packages from configuration
         if "packages" in self.config:

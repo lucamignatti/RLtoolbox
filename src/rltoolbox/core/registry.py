@@ -255,51 +255,7 @@ class ComponentRegistry:
         """
         return list(self._components.keys())
 
-    def register_builtin_components(self) -> None:
-        """Register built-in components from rltoolbox package."""
-        # Import built-in components directly
-        try:
-            from ..components.environments.simple_environment import SimpleEnvironment
-            from ..components.environments.environment_wrapper import EnvironmentWrapper
-            from ..components.agents.mlp_agent import MLPAgent
-            from ..components.agents.epsilon_greedy_agent import EpsilonGreedyAgent
-            from ..components.agents.policy_agent import PolicyAgent
-            from ..components.agents.replay_buffer_agent import ReplayBufferAgent
-            from ..components.loggers.console_logger import ConsoleLogger
-            from ..components.loggers.file_logger import FileLogger
-            from ..components.loggers.csv_logger import CSVLogger
-            from ..components.loggers.metrics_logger import MetricsLogger
-            from ..components.loggers.wandb_logger import WandbLogger
-            from ..components.algorithms.ppo import PPO
-
-            # Register components directly
-            self._components["rltoolbox.SimpleEnvironment"] = SimpleEnvironment
-            self._components["rltoolbox.EnvironmentWrapper"] = EnvironmentWrapper
-            self._components["rltoolbox.MLPAgent"] = MLPAgent
-            self._components["rltoolbox.EpsilonGreedyAgent"] = EpsilonGreedyAgent
-            self._components["rltoolbox.PolicyAgent"] = PolicyAgent
-            self._components["rltoolbox.ReplayBufferAgent"] = ReplayBufferAgent
-            self._components["rltoolbox.ConsoleLogger"] = ConsoleLogger
-            self._components["rltoolbox.FileLogger"] = FileLogger
-            self._components["rltoolbox.CSVLogger"] = CSVLogger
-            self._components["rltoolbox.MetricsLogger"] = MetricsLogger
-            self._components["rltoolbox.WandbLogger"] = WandbLogger
-            self._components["rltoolbox.PPO"] = PPO
-
-            # Register the package info
-            self._packages["rltoolbox"] = {
-                "version": "dev",
-                "components": [
-                    "SimpleEnvironment", "EnvironmentWrapper",
-                    "MLPAgent", "EpsilonGreedyAgent",
-                    "PolicyAgent", "ReplayBufferAgent",
-                    "ConsoleLogger", "FileLogger", "CSVLogger", "MetricsLogger", "WandbLogger",
-                    "PPO"
-                ]
-            }
-
-        except ImportError as e:
-            warnings.warn(f"Could not register built-in components: {e}")
+    
 
 
 # Global registry instance
