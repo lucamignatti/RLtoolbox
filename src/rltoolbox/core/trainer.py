@@ -277,15 +277,19 @@ class RLTrainer:
         # Environment step
         self._execute_hook("environment_step")
 
-        # Transition received (post-processing)
-        self._execute_hook("transition_received")
-
         # Update episode reward
         if "reward" in self.context:
             self.context["training"]["episode_reward"] += self.context["reward"]
 
-        # Store experience
+        # Store experience (BEFORE state update to preserve correct S_t, A_t, R_t sequence)
         self._execute_hook("experience_storage")
+
+        # Update current state from next_state for next iteration
+        if "next_state" in self.context:
+            self.context["state"] = self.context["next_state"]
+
+        # Transition received (post-processing) - safe to update state now
+        self._execute_hook("transition_received")
 
         # Step end
         self._execute_hook("step_end")
